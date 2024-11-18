@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fff; /* White background for a clean look */
+            margin: 0;
+            padding: 0;
+            color: black; /* Default text color */
+        }
+        header {
+            background-color: #333; /* Dark header background */
+            color: white; /* Header text color remains white */
+            padding: 15px;
+            text-align: center;
+        }
+        h1, h2 {
+            color: white; /* Set h1 and h2 text colors to white */
+        }
+        a {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px;
+            background-color: white; /* White background for buttons */
+            color: black; /* Black text color */
+            text-decoration: none;
+            border: 2px solid black; /* Black border for buttons */
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effect */
+        }
+        a:hover {
+            background-color: black; /* Black background on hover */
+            color: white; /* White text color on hover */
+        }
+        .user-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px; /* Space above user list */
+        }
+        .user-list li {
+            padding: 10px;
+            background-color: #f4f4f4; /* Light grey for list items */
+            border: 1px solid #ccc; /* Light border */
+            margin-bottom: 5px;
+            border-radius: 5px;
+            color: black; /* Set list item text color to black */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome, <span th:text="${username}"></span>!</h1>
+        <h2>Your Role: <span th:text="${role}"></span></h2>
+    </header>
+
+    <div>
+        <a href="/profile">View Profile</a>
+        <a href="/logout">Logout</a>
+    </div>
+
+    <div th:if="${role == 'ADMIN'}">
+        <h2>All Users:</h2>
+        <ul class="user-list">
+            <li th:each="user : ${allUsers}">
+                <span th:text="${user.fullname}"></span> (<span th:text="${user.username}"></span>)
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

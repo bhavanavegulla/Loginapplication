@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create User</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF; /* Blue background */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            text-align: center; /* Center text inside button */
+            margin: 10px 0; /* Add margin for spacing */
+            display: inline-block; /* Ensures it behaves like a block */
+        }
+        .button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+        .back-button {
+            background-color: #6c757d; /* Gray background for back button */
+            margin-top: 20px; /* Additional space above */
+        }
+        .back-button:hover {
+            background-color: #5a6268; /* Darker gray on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Create User</h2>
+         <div th:if="${error}" style="color: red;"> 
+        <p th:text="${error}"></p>
+    </div>
+        <form action="#" th:action="@{/user/create}" th:object="${user}" method="post">
+			
+            <input type="text" placeholder="Username" th:field="*{username}" required />
+            <input type="text" placeholder="Full Name" th:field="*{fullname}" required />
+            <input type="text" placeholder="Role" th:field="*{role}" required />
+            <input type="password" placeholder="Password" th:field="*{password}" required />
+            <button type="submit" class="button">Create User</button>
+        </form>
+        <a href="/admin" class="button back-button">Back to Admin Dashboard</a> <!-- Back button styled -->
+    </div>
+</body>
+</html>
